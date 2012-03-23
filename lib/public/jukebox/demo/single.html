@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+	<title>Single Playback Demo</title>
+    <meta charset="utf-8" />
+
+	<script src="../src/Player.js"></script>
+	<script src="../src/Manager.js"></script>
+
+	<link rel="stylesheet" href="./media/layout.css">
+
+</head>
+<body>
+
+<header>Jukebox</header>
+
+<article>
+	<h2>Single Playback Demo</h2>
+	<p>
+		Tap the buttons to playback the different sprite entries.<br>
+		You can see a difference between the optional forced playback and defaulted automatic-cloning mode
+		in environments that support parallel playback.
+	</p>
+
+	<h4>Default Playback</h4>
+	<p class="center" id="demo-default"></p>
+
+	<h4>Forced playback</h4>
+	<p class="center" id="demo-forced"></p>
+</article>
+
+<div id="volume" class="wrapper">
+	<h4>Volume</h4>
+	<div>
+		<input id="volume-slider" class="slider" type="range" name="volume-slider" min="0" max="100" value="50">
+	</div>
+</div>
+
+<article class="center">
+	<h4>Additional controls</h4>
+	<button onclick="myPlayer.stop()">stop()</button>
+	<button onclick="myPlayer.pause()">pause()</button>
+	<button onclick="myPlayer.resume()">resume()</button>
+</article>
+
+<script>
+var myPlayer;
+(function() {
+
+	myPlayer = new jukebox.Player({
+	
+		resources: [
+			'media/spritemap-cajon.ac3',
+			'media/spritemap-cajon.mp3',
+			'media/spritemap-cajon.m4a',
+			'media/spritemap-cajon.ogg',
+			// All mobiles support 3gp / amr. crappy codec, but cool fallback
+			'media/spritemap-cajon.amr'
+		],
+
+		spritemap: {
+			'cajon-1': {
+				'start': 0.00,
+				'end': 4.20
+			},
+
+			'cajon-2': {
+				'start': 5.00,
+				'end': 9.30
+			}
+
+		}
+	
+	});
+
+
+	function createButton(entry, force) {
+
+		var button = document.createElement('button');
+
+		button.innerHTML = entry;
+		button.onclick = function() {
+			myPlayer.play(entry, force === true ? true : false);
+		};
+
+		return button;
+
+	};
+
+
+	var demoDefault = document.getElementById('demo-default'),
+		demoForced = document.getElementById('demo-forced');
+
+	for (var entry in myPlayer.settings.spritemap) {
+		demoDefault.appendChild(createButton(entry, false));
+		demoForced.appendChild(createButton(entry, true));
+	}
+
+
+	// connect volume slider
+	document.getElementById('volume-slider').addEventListener('change', function() {
+		myPlayer.setVolume(this.value/100);
+	}, false);
+
+})();
+</script>
+</body>
+</html>

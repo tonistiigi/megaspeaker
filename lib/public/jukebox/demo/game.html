@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+	<title>Game Loop Integration Demo</title>
+    <meta charset="utf-8" />
+
+	<script src="../src/Player.js"></script>
+	<script src="../src/Manager.js"></script>
+
+	<link rel="stylesheet" href="./media/layout.css">
+
+</head>
+<body>
+
+<header>Jukebox</header>
+
+<article>
+	<h2>Game Loop Integration Demo</h2>
+	<p>
+		To avoid performance-troubles with multiple intervals in your mobile browser environment,
+		you are able to modify the behaviour of the jukebox.Manager's loop and you are able to call
+		it yourself from inside your game loop.
+	</p>
+	<p>
+		Remember that the more often the sound loop is called, the better is the reaction on stream
+		corrections, but the lesser is the performance of your game.
+	</p>
+	<p>
+		<b>Important</b>: An interval below 15.6ms doesn't make sense due to underlying architectures.<br>
+		Read <a href="http://software.intel.com/en-us/articles/cpu-power-utilization-on-intel-architectures/">this article on software.intel.com</a> for more details.<br>
+		My personal advice is a sound loop that runs every 20ms - 50ms.
+	</p>
+</article>
+
+<div class="wrapper center">
+	<div>
+		<button onclick="initPlayer()">Initialize jukebox.Player</button>
+		<button onclick="playEffect()">Play Sound Effect</button>
+	</div>
+</div>
+
+<script>
+var initPlayer,
+	playEffect;
+
+(function() {
+
+	var myPlayer;
+
+	initPlayer = function() {
+
+		// Avoid multiple Jukeboxes on multi-channel environments
+		if (myPlayer !== undefined) {
+			return;
+		}
+
+
+		var settings = {
+	
+			resources: [
+				'media/spritemap-cajon.ac3',
+				'media/spritemap-cajon.mp3',
+				'media/spritemap-cajon.m4a',
+				'media/spritemap-cajon.ogg',
+				// All mobiles support 3gp / amr. crappy codec, but cool fallback
+				'media/spritemap-cajon.amr'
+			],
+
+			autoplay: 'bg-music',
+
+			spritemap: {
+
+				'bg-music': {
+					'start': 0.00,
+					'end': 4.20,
+					'loop': true // Important! Background Music MUST have it
+				},
+
+				'cajon-2': {
+					'start': 5.00,
+					'end': 9.30
+				}
+
+			}
+	
+		};
+
+		myPlayer = new jukebox.Player(settings);
+
+	};
+ 
+
+	playEffect = function() {
+		myPlayer.play('cajon-2');
+	};
+
+
+
+	// Overwrite jukebox.Manager before jukebox.Player will do automatically.
+	jukebox.Manager = new jukebox.Manager({
+		useFlash: false,
+		useGameLoop: true
+	});
+
+
+	var gameLoop = function() {
+
+		jukebox.Manager.loop();
+
+		// ... other gameLoop code
+
+	};
+
+	window.setInterval(function() {
+		gameLoop();
+	}, 20);
+
+})();
+</script>
+</body>
+</html>

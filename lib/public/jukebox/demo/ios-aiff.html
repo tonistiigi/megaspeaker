@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+	<title>iOS Demo</title>
+    <meta charset="utf-8" />
+
+	<script src="../src/Player.js"></script>
+	<script src="../src/Manager.js"></script>
+
+	<link rel="stylesheet" href="./media/layout.css">
+
+</head>
+<body>
+	
+<header>Jukebox</header>
+
+<article>
+	<h2>iOS Codec Mess</h2>
+	<p>
+		In <a href="./ios.html">the other iOS demo</a> you may have found out
+		that iOS has several problems playing back encoded / compressed Audio
+		files due to their iTunes implementation.
+	</p>
+	<p>
+		What you might not know:
+		There's an AIFF audio container format using an IMA-ADPCM codec that is
+		supported on iOS.
+	</p>
+	<p>
+		You can convert files to this format (on Mac OSX) via:
+		<br>
+		<code>afconvert -f caff -d ima4 audiofile.wav</code>
+	</p>
+</article>
+
+<div class="wrapper center">
+	<div>
+		<button ontouchstart="initPlayer()">Initialize autoplaying jukebox.Player</button>
+		<button ontouchstart="playEffect()">Play Sound Effect</button>
+	</div>
+</div>
+
+<script>
+var initPlayer,
+	playEffect;
+
+(function() {
+
+	var myPlayer;
+
+	initPlayer = function() {
+
+		// Avoid multiple Jukeboxes on multi-channel environments
+		if (myPlayer !== undefined) {
+			return;
+		}
+
+
+		var settings = {
+	
+			resources: [
+				'media/spritemap-cajon.caf'
+			],
+
+			autoplay: 'bg-music',
+
+			spritemap: {
+
+				'bg-music': {
+					'start': 0.00,
+					'end': 4.20,
+					'loop': true // Important! Background Music MUST have it
+				},
+
+				'cajon-2': {
+					'start': 5.00,
+					'end': 9.30
+				}
+
+			}
+	
+		};
+
+		myPlayer = new jukebox.Player(settings);
+
+	};
+ 
+
+	playEffect = function() {
+		myPlayer.play('cajon-2');
+	};
+
+})();
+</script>
+</body>
+</html> 

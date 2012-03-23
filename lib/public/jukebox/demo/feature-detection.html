@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+	<title>Game Loop Integration Demo</title>
+    <meta charset="utf-8" />
+
+	<script src="../src/Player.js"></script>
+	<script src="../src/Manager.js"></script>
+
+	<link rel="stylesheet" href="./media/layout.css">
+
+</head>
+<body>
+
+<header>Jukebox</header>
+
+<article>
+	<h2>Detected Features</h2>
+	<ul id="feature-list"></ul>
+</article>
+
+<article>
+	<h2>Detected Codecs</h2>
+	<ul id="codec-list"></ul>
+</article>
+
+<script>
+(function() {
+
+	jukebox.Manager = new jukebox.Manager({
+		useGameLoop: true // avoids interval, not necessary for this demo
+	});
+
+
+	var codecList = document.getElementById('codec-list'),
+		featureList = document.getElementById('feature-list');
+
+	var add = function(text, element) {
+		var li = document.createElement('li');
+		li.innerHTML = text;
+		element.appendChild(li);
+	};
+
+	for (var ext in jukebox.Manager.codecs) {
+		add(ext + ': ' + jukebox.Manager.codecs[ext], codecList);
+	}
+
+	for (var feature in jukebox.Manager.features) {
+		add(feature + ': ' + jukebox.Manager.features[feature], featureList);
+	}
+
+})();
+</script>
+</body>
+</html>

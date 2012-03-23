@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+	<title>iOS Demo</title>
+    <meta charset="utf-8" />
+
+	<script src="../src/Player.js"></script>
+	<script src="../src/Manager.js"></script>
+
+	<link rel="stylesheet" href="./media/layout.css">
+
+</head>
+<body>
+	
+<header>Jukebox</header>
+
+<article>
+	<h2>iOS Security Model Usage</h2>
+	<p>
+		On iOS, the security model prevents automatic playback of Audio.
+	</p>
+	<p>
+		There's only one method to bypass the security model, using an interval.<br>
+		Therefore you will have to initialize the Jukebox inside the UI event callstack.
+	</p>
+	<p>
+		<b>The result</b>: You are able to playback a background music that continues
+		right after playing another sprite entry like in-game sound effects.
+	</p>
+</article>
+
+
+<div class="wrapper center">
+	<div>
+		<button ontouchstart="initPlayer()">Initialize autoplaying jukebox.Player</button>
+		<button ontouchstart="playEffect()">Play Sound Effect</button>
+	</div>
+</div>
+
+<script>
+var initPlayer,
+	playEffect;
+
+(function() {
+
+	var myPlayer;
+
+	initPlayer = function() {
+
+		// Avoid multiple Jukeboxes on multi-channel environments
+		if (myPlayer !== undefined) {
+			return;
+		}
+
+
+		var settings = {
+	
+			resources: [
+				'media/spritemap-cajon.ac3',
+				'media/spritemap-cajon.mp3',
+				'media/spritemap-cajon.m4a',
+				'media/spritemap-cajon.ogg',
+				// All mobiles support 3gp / amr. crappy codec, but cool fallback
+				'media/spritemap-cajon.amr'
+			],
+
+			autoplay: 'bg-music',
+
+			spritemap: {
+
+				'bg-music': {
+					'start': 0.00,
+					'end': 4.20,
+					'loop': true // Important! Background Music MUST have it
+				},
+
+				'cajon-2': {
+					'start': 5.00,
+					'end': 9.30
+				}
+
+			}
+	
+		};
+
+		myPlayer = new jukebox.Player(settings);
+
+	};
+ 
+
+	playEffect = function() {
+		myPlayer.play('cajon-2');
+	};
+
+})();
+</script>
+</body>
+</html> 

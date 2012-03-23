@@ -1,0 +1,313 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Jukebox Documentation / Overview</title>
+		<meta charset="utf-8" />
+
+		<link rel="stylesheet" href="./media/layout.css">
+
+	</head>
+<body>
+
+<header>
+	Jukebox
+	<div>
+		<a href="index.html" class="active">Documentation</a>
+		<a href="api.html">API</a>
+		<a href="demos.html">Demos</a>
+	</div>
+</header>
+
+<aside id="navigation">
+	<nav>
+		<a href="#important">Important Hints</a>
+		<a href="#support-html5">HTML5 Support</a>
+		<a href="#support-flash">Flash Support</a>
+		<a href="#getting-started">Getting Started</a>
+		<a href="#settings-player">Settings (Player)</a>
+		<a href="#settings-manager">Settings (Manager)</a>
+		<a href="#initialization">Example</a>
+	</nav>
+</aside>
+
+<h1>Overview</h1>
+
+<article id="important">
+
+	<h2>Important Issues and Hints</h2>
+	
+	<p>
+		<b>Chrome 16.0.912.* (Mac OSX)</b> is a known for timing issues
+		with the Audio Decoder. getCurrentTime() will return false
+		values that are incorrect, because the internal used
+		decoder is not behaving the same way as it should.
+		Confirmed is that this could be a problem related to VBR
+		encoded files.
+	</p>
+
+	<h3>iOS</h3>
+	<p>
+		iOS allows only playback of a single sound in parallel.
+		It has also latencies up to 820ms (initial playback) due to the
+		implementation of using iTunes as a low-priority thread and issues
+		with encoded audio formats.
+	</p>
+	<p>
+		There's a further <a href="demo/ios-aiff.html">demo using an AIFF</a>
+		container and the IMA4 codec that allows instant playback there.
+	</p>
+	<p>
+		The <b>iOS security model</b> only allows playback of sound using the
+		Audio API (and iTunes in the background) if the callstack was
+		triggered by an event inside the UI layer. That means, you will have
+		to use an element.onclick(), element.ontouchstart() or similar to
+		initialize the Jukebox.
+		<br><br>
+		Take a look at the <a href="../demo/ios.html">iOS demo</a> that shows
+		how to bypass the security model for having a background music.
+	</p>
+
+
+	<h3>Android</h3>
+	<p>
+		Jukebox should work with all third-party shipped web browsers that
+		are known to support HTML5, as they ship their own codec implementations.
+	</p>
+	<p>
+		Native WebKit will also support HTML5 Audio, but it depends on if the
+		manufacturer ships a codec implementation. Google's policies for the
+		Android platform requires a Apache/BSD license based implementation of
+		the codec. That's why Android 2.3.2+ devices <q>may have</q> an mp3
+		codec installed. Third-party Mods like Cyanogen also support mp3 and
+		flac codec implementations.
+	</p>
+
+	<h3>Mobile Codec Mess (Fallback solution)</h3>
+	<p>
+		All mobiles support GSM, so they have the voice codec for GSM installed
+		which is based on 3gp / amr. This codec supports bitrates up to 12.2kbit/s.
+		While this is a pretty sub-par quality, it is a good fallback solution for
+		slow internet connections.
+		<br><br>
+		The codec is known to work across all Android devices (even on those without
+		any other supported codec) and known to work on iOS and WebOS.
+	</p>
+
+</article>
+
+<article id="support-html5">
+
+	<h2>HTML5 Audio Support</h2>
+	<small>sorted by Browser's Engine</small>
+
+	<h3>Gecko</h3>
+	<ul>
+		<li>Firefox 4+ Mobile for Android</li>
+		<li>Firefox 4+ Desktop (Windows, Mac OSX, Linux)</li>
+	</ul>
+
+	<h3>Presto</h3>
+	<ul>
+		<li>Opera Mobile 11+ for Android</li>
+		<li>Opera 11+ (Windows, Mac OSX, Linux)</li>
+	</ul>
+
+	<h3>Trident</h3>
+	<ul>
+		<li>Internet Explorer 9+ (Windows)</li>
+	</ul>
+
+	<h3>WebKit Mobile</h3>
+	<ul>
+		<li>Native Android Browser 2.3.2+ (Nexus S, HTC Desire HD, Samsung Galaxy S, Samsung Galaxy S2)</li>
+		<li>iOS 4.3+ (iPad, iPad2, iPod 3G, iPod 3GS, iPhone 4)</li>
+		<li>Palm WebOS 2.0+ (Palm Pre, Palm Pre 2)</li>
+	</ul>
+
+	<h3>WebKit Desktop</h3>
+	<ul>
+		<li>Safari 4+ (Windows, Mac OSX)</li>
+		<li>Safari 5.0.4+ (Windows, Mac OSX)</li>
+		<li>Google Chrome 4+ (Windows, Mac OSX)</li>
+		<li>Google Chrome Dev Channel (10,11,12,13,14) (Linux, Windows, Mac OSX)</li>
+		<li>Chromium Nightly 12.0+ (Windows, Mac OSX, Linux)</li>
+		<li>WebKit nightly rev83010(+) (Windows, Mac OSX, Linux)</li>
+	</ul>
+
+</article>
+
+<article id="support-flash">
+
+	<h2>Flash Support (Fallback)</h2>
+	<small>sorted by Browser's Engine</small>
+
+	<h3>Trident</h3>
+	<ul>
+		<li>Internet Explorer 6, 7, 8 (Windows)</li>
+	</ul>
+
+	<h3>WebKit Mobile</h3>
+	<ul>
+		<li>Native Android Browser 1.6+ (all devices of all manufacturers)</li>
+	</ul>
+
+</article>
+
+<article id="getting-started">
+
+	<h2>Getting Started</h2>
+	<p>
+		Jukebox makes usage of spritemap-based soundfiles. That means every soundfile consists of different
+		<q>sprite entries</q> that can be played. We chose to use spritemaps, because every codec is more
+		effective when encoding large files - and download speed is a huge plus when considering that music
+		and sounds are by far the largest files in games.
+		<br><br>
+		Another reason for choosing a spritemap structure was the latency on mobile devices, especially on
+		iOS where initial playback can take up to 820ms due to their implementation using iTunes for playback.
+	</p>
+
+
+	<h3>Create the Audio File</h3>
+	<p>
+		The sprite entries can be looped, such as a background music - or used as sound effects.
+		<br><br>
+		The structure of an audio sprite map should look like this, to avoid any issues with playback latency:
+
+		<ol>
+			<li>background music (fade-in / fade-out)</li>
+			<li>1.00 second silence</li>
+			<li>sound effect #1</li>
+			<li>1.00 second silence</li>
+			<li>sound effect #2</li>
+			<li>1.00 second silence</li>
+			<li>sound effect #3</li>
+			<li>1.00 second silence</li>
+		</ol>
+
+	</p>
+
+	<p>
+		<b>Important</b>: For easier playback, you should round up the silence. So it's much easier and more
+		precise. The Audio API behind is in seconds - so if you choose to start a sprite entry at e.g.
+		3.075s you will have a delay of at least 0.005s (minimum, worst case plus loop interval timeout).
+		<br><br>
+		My recommendation is to round up to full seconds instead to avoid that problem. Place the sprite entry
+		at 4.00 seconds.
+	</p>
+
+</article>
+
+<article id="settings-player">
+
+	<h2>jukebox.Player Settings</h2>
+	<b>Required:</b>
+	<ul>
+		<li><b>resources</b>: (<mark>Array</mark>) array of urls to your sound files</li>
+		<li><b>spritemap</b>: (<mark>Object</mark>) <a href="#settings-player-spritemap">spritemap settings</a></li>
+	</ul>
+
+	<b>Optional:</b>
+	<ul>
+		<li><b>autoplay</b>: (<mark>String</mark>) id of sprite entry (that is defined in <mark>spritemap</mark>)</li>
+		<li><b>timeout</b>: (<mark>Number</mark>) timeout in milliseconds if the EventListener fails on "canplaythrough" event. Defaulted by 1000.</li>
+		<li><b>flashMediaElement</b>: (<mark>String</mark>) url to the FlashMediaElement.swf (optional, required for flash fallback)</li>
+	</ul>
+
+
+	<h3 id="settings-player-spritemap">Spritemap Settings</h3>
+	<p>
+		The spritemap settings are the data representation of your audio file.
+		<br>
+		This is an example that gives you an idea of how to setup:
+	</p>
+
+	<pre>
+	var player = new jukebox.Player({
+
+		// ... other settings
+
+		spritemap: {
+			bgmusic: {
+				start: 0.00,
+				end:  20.00,
+				loop: true
+			},
+			shoot: {
+				start: 21.00,
+				end: 22.50
+			},
+			kaching: {
+				start: 24.00,
+				end: 24.75
+			}
+		}
+
+	});
+	</pre>
+
+</article>
+
+<article id="settings-manager">
+
+	<h2>jukebox.Manager Settings</h2>
+	<b>Optional:</b>
+	<ul>
+		<li><b>useFlash</b>: (<mark>Boolean</mark>) <mark>True</mark> will enforce flash fallback, so html5 audio is ignored.</li>
+		<li><b>useGameLoop</b>: (<mark>Boolean</mark>) <mark>True</mark> will let you use your own game loop.</li>
+	</ul>
+
+	<p>
+		<mark>useGameLoop</mark> is an important settings for usage with performance-critic game loop intervals. It allows you to call
+		jukebox.Manager.loop() inside your game loop, so that you can avoid usage of multiple intervals.
+		<br><br>
+		Please take a look at the <a href="demos.html#game">Game Integration demo</a> for more details.
+	</p>
+
+</article>
+
+<article id="initialization">
+
+	<h3>Initialization Example</h3>
+	<p>
+		This example uses the available resources from the demos folder. It automatically starts to play the
+		<q>bgmusic</q> sprite entry.
+		<br>
+		Note that there's no <a href="api.html#play">play()</a> call, so only
+		the background music is repeating all the time due to it's <q>loop</q> flag.
+	</p>
+
+	<pre class="executable">
+	window.demo = new jukebox.Player({
+
+		resources: [
+			'../demo/media/spritemap-cajon.ac3',
+			'../demo/media/spritemap-cajon.mp3',
+			'../demo/media/spritemap-cajon.m4a',
+			'../demo/media/spritemap-cajon.ogg',
+			'../demo/media/spritemap-cajon.amr'
+		],
+
+		autoplay: 'bgmusic',
+
+		spritemap: {
+			bgmusic: {
+				start: 0.00,
+				end: 4.20,
+				loop: true
+			},
+			effect: {
+				start: 5.00,
+				end: 9.30
+			}
+		}
+
+	});
+	</pre>
+
+</article>
+
+<script src="../src/Player.js"></script>
+<script src="../src/Manager.js"></script>
+<script src="doc.js"></script>
+</body>
+</html>

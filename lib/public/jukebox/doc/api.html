@@ -1,0 +1,309 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Jukebox Documentation / API</title>
+		<meta charset="utf-8" />
+
+		<link rel="stylesheet" href="./media/layout.css">
+
+	</head>
+<body>
+
+<header>
+	Jukebox
+	<div>
+		<a href="index.html">Documentation</a>
+		<a href="api.html" class="active">API</a>
+		<a href="demos.html">Demos</a>
+	</div>
+</header>
+
+<aside id="navigation">
+	<nav>
+		<a href="#play">play(position, force)</a>
+		<a href="#stop">stop()</a>
+		<a href="#pause">pause()</a>
+		<a href="#resume">resume()</a>
+		<a href="#getvolume">getVolume()</a>
+		<a href="#setvolume">setVolume(volume)</a>
+		<a href="#getcurrenttime">getCurrentTime()</a>
+		<a href="#setcurrenttime">setCurrentTime(position)</a>
+	</nav>
+</aside>
+
+<h1>API</h1>
+
+<article id="play">
+
+	<h2>play(position, force)</h2>
+	<h3>Parameters</h3>
+	<ul>
+		<li><b>position</b>: (<mark>Float</mark>) time in seconds OR (<mark>String</mark>) entry-id</li>
+		<li><b>force</b>: (<mark>Boolean</mark>) true will disable cloning, false is defaulted</li>
+	</ul>
+
+	<h3>Description</h3>
+	<p>
+		This function will start playback of the given spritemap entry.<br>
+		You can pass through either a value of a time position in seconds (that is
+		inside a defined sprite entry) or an id of a sprite entry.
+		<br><br>
+		The sprite entry id is the preferred and fastest way to play.
+	</p>
+
+	<h3>Example</h3>
+	<pre>
+	// var player = new jukebox.Player(...);
+
+
+	player.play('bgmusic'); // faster, sprite entry's id
+	player.play(12.34); // slower, will search for matching sprite entry
+	</pre>
+
+</article>
+
+<article id="stop">
+
+	<h2>stop()</h2>
+	<h3>Parameters</h3>
+	<p>This method requires no parameters.</p>
+
+	<h3>Description</h3>
+	<p>
+		This function will stop playback on the origin jukebox.Player instance.<br>
+		It will reset the position of the stream to the beginning.
+	</p>
+
+	<h3>Example</h3>
+	<pre class="executable init">
+	// var player = new jukebox.Player(...);
+
+
+	player.play('bgmusic');
+
+
+	// will stop playback after 2 seconds
+	window.setTimeout(function() {
+		player.stop();
+	}, 2000);
+	</pre>
+
+</article>
+
+<article id="pause">
+
+	<h2>pause()</h2>
+	<h3>Parameters</h3>
+	<p>This method requires no parameters.</p>
+
+	<h3>Description</h3>
+	<p>
+		This function will pause playback of the jukebox.Player instance.<br>
+		It will save the current position of the stream, so you can <a href="#resume">resume()</a> it later.
+	</p>
+
+	<h3>Example</h3>
+	<pre class="executable init">
+	// var player = new jukebox.Player(...);
+
+
+	player.play('effect');
+
+
+	// will pause playback after 2 seconds
+	window.setTimeout(function() {
+		player.pause();
+	}, 2000);
+	</pre>
+
+</article>
+
+<article id="resume">
+
+	<h2>resume()</h2>
+	<h3>Parameters</h3>
+	<p>This method requires no parameters.</p>
+
+	<h3>Description</h3>
+	<p>
+		This function will resume playback of the jukebox.Player instance.<br>
+		It will start playback at the last cached position (of a <a href="#pause">pause()</a> call).<br>
+		If no position was cached before, it will start from the current position of the stream.
+	</p>
+
+	<h3>Example</h3>
+	<pre class="executable init">
+	// var player = new jukebox.Player(...);
+
+
+	player.play('effect');
+
+
+	// will pause playback after 2 seconds
+	window.setTimeout(function() {
+		player.pause();
+	}, 2000);
+
+
+	// will resume playback after 4 seconds
+	window.setTimeout(function() {
+		player.resume();
+	}, 4000);
+	</pre>
+
+</article>
+
+<article id="getvolume">
+
+	<h2>getVolume()</h2>
+	<h3>Parameters</h3>
+	<p>This method requires no parameters.</p>
+
+	<h3>Description</h3>
+	<p>
+		This function returns (<mark>Float</mark>) the current volume (min: <mark>0</mark>, max: <mark>1.0</mark>)
+		of the jukebox.Player instance.
+	</p>
+
+	<h3>Example</h3>
+	<pre class="executable init">
+	// var player = new jukebox.Player(...);
+
+
+	player.setVolume(0.3);
+
+
+	// Log the current volume to the console
+	console.log(player.getVolume());
+	</pre>
+
+</article>
+ 
+
+<article id="setvolume">
+
+	<h2>setVolume(volume)</h2>
+	<h3>Parameters</h3>
+	<ul>
+		<li><b>volume</b>: (<mark>Float</mark>) volume percentage (min: <mark>0</mark>, max: <mark>1.0</mark>)</li>
+	</ul>
+ 
+	<h3>Description</h3>
+	<p>
+		This function will set the volume to the given value.
+	</p>
+	<p>
+		<b>Important</b>: Some environments like iOS have no support for modifying the volume
+	</p>
+
+	<h3>Example</h3>
+	<pre class="executable init">
+	// var player = new jukebox.Player(...);
+
+
+	// set volume initially to 30% and start playback
+	player.setVolume(0.3);
+	player.play('effect');
+
+
+	// set volume to 100% after 2 seconds
+	window.setTimeout(function() {
+		player.setVolume(1.0);
+	}, 2000);
+	</pre>
+
+</article>
+
+<article id="getcurrenttime">
+
+	<h2>getCurrentTime()</h2>
+	<h3>Parameters</h3>
+	<p>This method requires no parameters.</p>
+ 
+	<h3>Description</h3>
+	<p>
+		This function returns (<mark>Float</mark>) the current position (in seconds) of the jukebox.Player instance.
+	</p>
+
+	<h3>Example</h3>
+	<pre class="executable init">
+	// var player = new jukebox.Player(...);
+
+
+	player.play('effect');
+
+	// Log the start position of the sprite entry to the console
+	// 200ms timeout lets the jukebox.Manager's loop correct the stream position
+	window.setTimeout(function() {
+		console.log('start: ' + player.getCurrentTime());
+	}, 200);
+
+
+	// Do it again after 2 seconds
+	window.setTimeout(function() {
+		console.log('after 2 seconds: ' + player.getCurrentTime());
+	}, 2000);
+	</pre>
+
+</article>
+
+<article id="setcurrenttime">
+
+	<h2>setCurrentTime(position)</h2>
+	<h3>Parameters</h3>
+	<ul>
+		<li><b>position</b>: (<mark>Float</mark>) the position of the jukebox.Player instance (in seconds)</li>
+	</ul>
+
+	<h3>Description</h3>
+	<p>
+		This function returns (<mark>Boolean</mark>) true if the stream was ready and the position was set. False otherwise.
+		<br><br>
+		It will <b>try</b> to set the current position of the jukebox.Player stream.
+		<br>
+		It may fail if the stream is not ready for that, e.g. if download is still in progress or the background
+		process is not ready for playback.
+	</p>
+
+	<h3>Example</h3>
+	<pre class="executable init">
+	// var player = new jukebox.Player(...);
+
+
+	player.play('effect');
+
+
+	// Log the start position of the sprite entry to the console
+	// 200ms timeout lets the jukebox.Manager's loop correct the stream position
+	window.setTimeout(function() {
+
+		console.log('start: ' + player.getCurrentTime());
+
+		player.setCurrentTime(7.00);
+		console.log('after setCurrentTime call: ' + player.getCurrentTime());
+
+	}, 200);
+
+
+	// Do it again after 2 seconds
+	window.setTimeout(function() {
+		console.log('after 2 seconds: ' + player.getCurrentTime());
+	}, 2000);
+	</pre>
+
+</article>
+ 
+
+
+
+
+
+
+
+
+
+<script src="../src/Player.js"></script>
+<script src="../src/Manager.js"></script>
+<script src="doc.js"></script>
+</body>
+</html>               

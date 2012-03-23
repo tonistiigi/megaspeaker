@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+<head>
+	<title>Sequencer Demo</title>
+    <meta charset="utf-8" />
+	<script src="../../src/Player.js"></script>
+	<script src="../../src/Manager.js"></script>
+	<script src="src/Sequencer.js"></script>
+
+	<link rel="stylesheet" href="../media/layout.css">
+	<link rel="stylesheet" href="./media/layout.css">
+
+</head>
+<body>
+
+<header>Dubstep Sequencer</header>
+
+<div id="sequencer">
+
+	<div id="sequencer-menu">
+		<button onclick="mySequencer.play()">Play</button>
+		<button onclick="mySequencer.stop()">Stop</button>
+		|
+		<button onclick="addSequence()">Add Sequence</button>
+		|
+		<button onclick="generateRandomHit()">Generate random Hit!</button>
+	</div>
+
+	<table id="timeline"></table>
+
+</div>
+
+<div class="wrapper center">
+	<div>
+		Each sequence field can has a value of 1-5.<br>
+		This demo uses sound samples from <a href="http://www.musicradar.com/news/tech/free-music-samples-download-loops-hits-and-multis-217833/79">this post on musicradar.com</a>.
+	</div>
+</div>
+
+
+<script>
+
+
+/*
+ * PUBLIC helpers
+ */
+
+var mySequencer,
+	addSequence,
+	generateRandomHit;
+
+(function() {
+
+
+	/*
+	 * Inital preparation of Jukebox settings
+	 */
+	var tracks = 'Bass Beat Synth Organ'.split(' '),
+		trackSettings = {},
+		resourceTypes = 'ac3 m4a mp3 ogg'.split(' '),
+		spritemap = {
+		'1': { 'start': 0.00, 'end': 3.50 },
+		'2': { 'start': 4.00, 'end': 7.50 },
+		'3': { 'start': 8.00, 'end': 11.50 },
+		'4': { 'start': 12.00, 'end': 15.50 },
+		'5': { 'start': 16.00, 'end': 19.50 }
+	};
+
+
+	for (var t = 0, l = tracks.length; t < l; t++) {
+
+		var setting = {
+			autoplay: false
+		};
+
+		setting.spritemap = spritemap;
+		setting.resources = [];
+
+		for (var r = 0, rl = resourceTypes.length; r < rl; r++) {
+			setting.resources.push('./media/dubstep-' + tracks[t].toLowerCase() + '.' + resourceTypes[r]);
+		}
+
+		trackSettings[t] = setting;
+
+	}
+
+
+
+	/*
+	 * Initial setup of sequencer with trackSettings
+	 * (which are multiple Jukebox settings)
+	 */
+	mySequencer = new Sequencer({
+		onended: function() {
+			updateTimelineUI(null, 'deactivate');
+		},
+		onsequencechange: function(sequence) {
+			updateTimelineUI(sequence - 1, 'deactivate')
+			updateTimelineUI(sequence, 'activate');
+		}
+	}, trackSettings);
+
+
+
+	/*
+	 * PUBLIC helper function for adding a new sequence to UI
+	 */
+	addSequence = function() {
+
+		var tracks = document.querySelectorAll('tr'),
+			sequenceId = sequencesAmount++;
+
+		for (var t = 0, l = tracks.length; t < l; t++) {
+			var cell = generateTimelineCell(sequenceId, t);
+			tracks[t].appendChild(cell);
+		}
+
+	}
+
+	/*
+	 * PUBLIC helper function for filling all input fields
+	 * with random values
+	 */
+	generateRandomHit = function() {
+
+		var cells = document.querySelectorAll('td input');
+
+		for (var c = 0, l = cells.length; c < l; c++) {
+			cells[c].value = Math.round(Math.random() * 5);
+			cells[c].onblur();
+		}
+
+	}
+
+
+	/*
+	 * This is the function that is called by the sequencer
+	 * "onsequencechange" and "onended"
+	 */
+	function updateTimelineUI(sequence, mode) {
+
+		mode = mode || 'activate';
+
+		var elements;
+		if (sequence === null) {
+			elements = document.querySelectorAll('td');
+		} else {
+			elements = document.querySelectorAll('td.x' + sequence);
+		}
+
+		for (var e = 0, l = elements.length; e < l; e++) {
+		    var newClassName;
+			if (mode === 'deactivate') {
+				newClassName = elements[e].className.replace(/\sactive/,'');
+			} else {
+				newClassName = elements[e].className + ' active';
+			}
+
+			elements[e].className = newClassName;
+		
+		}
+
+	}
+
+
+	/*
+	 * little helper function for generating a timeline UI cell
+	 */
+	function generateTimelineCell(x, y) {
+
+		var td = document.createElement('td');
+		td.className = 'x' + x;
+
+		var input = document.createElement('input');
+		input.setAttribute('data-x', x);
+		input.setAttribute('data-y', y);
+
+		(function(x,y){
+			input.onblur = function() {
+				if(mySequencer.set(y, x, this.value) === false) {
+					this.value = '';
+				}
+			};
+		})(x,y);
+
+		td.appendChild(input);
+
+		return td;
+
+	}
+
+
+	/*
+	 * Initial Setup of Timeline Table
+	 */
+	var timelineTable = document.getElementById('timeline'),
+		sequencesAmount = 10;
+
+	for (var y = 0; y < tracks.length; y++) {
+
+		var tr = document.createElement('tr');
+		tr.className = 'y' + y;
+
+		var th = document.createElement('th');
+		th.innerHTML = tracks[y];
+
+		tr.appendChild(th);
+
+		for (var x = 0; x < sequencesAmount; x++) {
+
+			var cell = generateTimelineCell(x, y);
+			tr.appendChild(cell);
+
+		}
+
+		timelineTable.appendChild(tr);
+
+	}
+
+})();
+</script>
+</body>
+</html>

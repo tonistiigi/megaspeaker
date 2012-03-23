@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Jukebox Documentation / Demos</title>
+		<meta charset="utf-8" />
+
+		<link rel="stylesheet" href="./media/layout.css">
+
+	</head>
+<body>
+
+<header>
+	Jukebox
+	<div>
+		<a href="index.html">Documentation</a>
+		<a href="api.html">API</a>
+		<a href="demos.html" class="active">Demos</a>
+	</div>
+</header>
+
+<aside id="navigation">
+	<nav>
+		<a href="#single">Single Playback</a>
+		<a href="#multi">Multi Playback</a>
+		<a href="#sequencer">Sequencer</a>
+		<a href="#ios">iOS Integration</a>
+		<a href="#game">Game Integration</a>
+	</nav>
+</aside>
+
+<h1>Demos Overview</h1>
+
+<article id="single">
+
+	<h2>Single Playback Demo</h2>
+
+	<h3>Description</h3>
+	<p>
+		The Single Playback Demo is the way to start using Jukebox.<br>
+		It is the easiest demo that shows the basic usage of the jukebox.Player.
+	</p>
+
+	<p>
+		The demo is located at <a href="../demo/single.html">demo/single.html</a>
+	</p>
+
+</article>
+
+<article id="multi">
+
+	<h2>Multi Playback Demo</h2>
+
+	<h3>Description</h3>
+	<p>
+		The Multi Playback Demo is a demo that shows advanced timing of spritemap entries.<br>
+		It shows you in a basic way of how to time the calls to the jukebox.Player API.
+	</p>
+
+	<p>
+		The demo is located at <a href="../demo/multi.html">demo/multi.html</a>
+	</p>
+
+</article>
+
+<article id="sequencer">
+
+	<h2>(Dubstep) Sequencer Demo</h2>
+
+	<h3>Description</h3>
+	<p>
+		The Dubstep Sequencer Demo is a fun project that shows an advanced use-case for Jukebox and
+		makes usage of timing / tracking.
+	</p>
+
+	<p>
+		The demo is located at <a href="../demo/sequencer/">demo/sequencer/</a>
+	</p>
+
+</article>
+ 
+
+<article id="ios">
+
+	<h2>iOS Integration Demo</h2>
+
+	<h3>Description</h3>
+
+	<p></p>
+	<b>Security Model</b>
+	<p>
+		iOS' security model doesn't allow you to play sounds without a precedent user interaction.
+		<br><br>
+		The solution for automated playback is running a sprite entry via autoplay. This is either<br>
+		a background music - or just silence. It will allow you to playback other entries via<br>
+		timeouts, intervals etc.
+	</p>
+
+	<b>No Parallel Playback</b>
+	<p>
+		iOS' implementation is not able to playback two different sounds in parallel.
+		<br><br>
+		Jukebox's solution for background music is to re-continue background music playback right<br>
+		after other sound effects were played.
+	</p>
+
+	<b>Use AIFF Container / IMA4 Compression</b>
+	<p>
+		iOS' implementation is very, very slow when playing back encoded formats.
+		<br><br>
+		A hint is here to use the Core Audio File format, which is apparently only
+		an AIFF-container using IMA4 compression. Take a look at both demos to see the difference.
+	</p>
+	<p>
+		The demos are located at <a href="../demo/ios.html">demo/ios.html</a> and <a href="../demo/ios-aiff.html">demo/ios-aiff.html</a>.
+	</p>
+
+</article>
+
+<article id="game">
+
+	<h2>Game Integration Demo</h2>
+
+	<h3>Description</h3>
+	<p>
+		The Game Integration Demo shows you how to modify jukebox.Manager for usage with an own
+		game loop.<br>
+		This is important for performance-critic environments like mobile games.
+	</p>
+
+	<p>
+		The demo is located at <a href="../demo/game.html">demo/game.html</a>
+	</p>
+
+	<h3>Details</h3>
+	<p>
+		See <a href="index.html#settings-manager">jukebox.Manager Settings</a> for further details.
+	</p>
+
+</article>
+ 
+
+
+
+</body>
+</html>               
