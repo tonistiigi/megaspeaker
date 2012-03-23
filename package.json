@@ -1,0 +1,25 @@
+{
+  "author": "",
+  "name": "megaspeaker",
+  "description": "Mobile phones playing in sync",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tonistiigi/megaspeaker.git"
+  },
+  "contributors": [
+    
+  ],
+  "main": "lib/backend/server.js",
+  "engines": {
+    "node": "~0.6.5"
+  },
+  "dependencies": {
+    'express': '',
+    'backbone': '',
+    'socket.io': '',
+    'underscore': '',
+    'winston': ''
+  },
+  "devDependencies": {}
+}
