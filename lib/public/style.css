@@ -1,0 +1,6 @@
+html {
+background: url(bg.jpg) repeat fixed top center;
+}
+.titlebar {
+display:none;
+}
