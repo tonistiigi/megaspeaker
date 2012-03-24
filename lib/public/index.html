@@ -13,7 +13,6 @@
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width">
-  <meta name="google-site-verification" content="3ad7lwhR1C3pIymktSkxhJhVienxcYsZJyf-1fxoB1Q" />
 
   <!-- Home screen icon  Mathias Bynens mathiasbynens.be/notes/touch-icons -->
   <!-- For iPhone 4 with high-resolution Retina display: -->
@@ -24,15 +23,17 @@
   <link rel="apple-touch-icon-precomposed" href="img/l/apple-touch-icon-precomposed.png">
   <!-- For nokia devices: -->
   <link rel="shortcut icon" href="img/l/apple-touch-icon.png">
-
+  
+	<link rel="stylesheet" href="jukebox/demo/media/layout.css">
+  
   <!-- iOS web app, delete if not needed. https://github.com/h5bp/mobile-boilerplate/issues/94 -->
-   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-   <script>(function(){var a;if(navigator.platform==="iPad"){a=window.orientation!==90||window.orientation===-90?"img/startup-tablet-landscape.png":"img/startup-tablet-portrait.png"}else{a=window.devicePixelRatio===2?"img/startup-retina.png":"img/startup.png"}document.write('<link rel="apple-touch-startup-image" href="'+a+'"/>')})()</script>
-
+  <script>(function(){var a;if(navigator.platform==="iPad"){a=window.orientation!==90||window.orientation===-90?"img/startup-tablet-landscape.png":"img/startup-tablet-portrait.png"}else{a=window.devicePixelRatio===2?"img/startup-retina.png":"img/startup.png"}document.write('<link rel="apple-touch-startup-image" href="'+a+'"/>')})()</script> 
+  
   <!-- The script prevents links from opening in mobile safari. https://gist.github.com/1042026 -->
-   <script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>
-
+   <script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script> 
+  
   <!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading -->
   <meta http-equiv="cleartype" content="on">
 
@@ -46,19 +47,36 @@
 </head>
 
 <body>
+  <header>Jukebox</header>
 
-  <div id="container">
-    <header>
+<article>
+	<h2>Single Playback Demo</h2>
+	<p>
+		Tap the buttons to playback the different sprite entries.<br>
+		You can see a difference between the optional forced playback and defaulted automatic-cloning mode
+		in environments that support parallel playback.
+	</p>
 
-    </header>
-    <div id="main" role="main">
-      Hello boilerplate
-    </div>
+	<h4>Default Playback</h4>
+	<p class="center" id="demo-default"></p>
 
-    <footer>
+	<h4>Forced playback</h4>
+	<p class="center" id="demo-forced"></p>
+</article>
 
-    </footer>
-  </div> <!--! end of #container -->
+<div id="volume" class="wrapper">
+	<h4>Volume</h4>
+	<div>
+		<input id="volume-slider" class="slider" type="range" name="volume-slider" min="0" max="100" value="50">
+	</div>
+</div>
+
+<article class="center">
+	<h4>Additional controls</h4>
+	<button onclick="myPlayer.stop()">stop()</button>
+	<button onclick="myPlayer.pause()">pause()</button>
+	<button onclick="myPlayer.resume()">resume()</button>
+</article>
 
 
   <!-- JavaScript at the bottom for fast page loading -->
@@ -71,6 +89,71 @@
   <script src="js/helper.js"></script>
   <script src="js/backbone.js"></script>
   <script src="js/underscore.js"></script>
+  <script src="jukebox/src/Player.js"></script>
+	<script src="jukebox/src/Manager.js"></script>
+
+  <script>
+    var myPlayer;
+    (function() {
+
+      myPlayer = new jukebox.Player({
+
+        resources: [
+          'jukebox/demo/media/spritemap-cajon.ac3',
+          'jukebox/demo/media/spritemap-cajon.mp3',
+          'jukebox/demo/media/spritemap-cajon.m4a',
+          'jukebox/demo/media/spritemap-cajon.ogg',
+          // All mobiles support 3gp / amr. crappy codec, but cool fallback
+          'jukebox/demo/media/spritemap-cajon.amr'
+        ],
+
+        spritemap: {
+          'cajon-1': {
+            'start': 0.00,
+            'end': 4.20
+          },
+
+          'cajon-2': {
+            'start': 5.00,
+            'end': 9.30
+          }
+
+        }
+
+      });
+
+
+      function createButton(entry, force) {
+
+        var button = document.createElement('button');
+
+        button.innerHTML = entry;
+        button.onclick = function() {
+          myPlayer.play(entry, force === true ? true : false);
+        };
+
+        return button;
+
+      };
+
+
+      var demoDefault = document.getElementById('demo-default'),
+        demoForced = document.getElementById('demo-forced');
+
+      for (var entry in myPlayer.settings.spritemap) {
+        demoDefault.appendChild(createButton(entry, false));
+        demoForced.appendChild(createButton(entry, true));
+      }
+
+
+      // connect volume slider
+      document.getElementById('volume-slider').addEventListener('change', function() {
+        myPlayer.setVolume(this.value/100);
+      }, false);
+
+    })();
+  </script>
+
   <!-- end scripts-->
 
   <!-- Debugger - remove for production -->
