@@ -203,6 +203,9 @@ td { vertical-align: top; }
    Author:
    ========================================================================== */
 
+a {
+  text-decoration: none;
+}
 
 html, body {
   height: 98%;
@@ -226,7 +229,7 @@ body {
 
 
 #time {
-  font-size: 6em;
+  font-size: 4em;
   font-weight: bold;
   margin-bottom: 20px;
 }
@@ -234,7 +237,7 @@ body {
 #speakerBg {
   position: relative;
   margin: auto;
-  width: 400px;
+  width: 330px;
   height: 400px;
   background: url('../img/speakerControlsBg.png') no-repeat 50% 0%;
   background-size: contain;
@@ -247,15 +250,25 @@ body {
 }
 
 #readySpeakers {
-  top: 16%;
-  right: 22%;
+  top: 13%;
+  right: 20%;
 }
 
 #totalSpeakers {
-  top: 22%;
-  right: 18%;
+  top: 18%;
+  right: 17%;
   font-size: 18px;
   color: lightgray;
+}
+
+#playBtn {
+  position: relative;
+  top: 45px;
+  left: -23px;
+}
+
+#playBtn img {
+  width: 175px;
 }
 
 header {
