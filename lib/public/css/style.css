@@ -203,14 +203,81 @@ td { vertical-align: top; }
    Author:
    ========================================================================== */
 
+#container {
+background:#2e2e2e url('../img/masterBg.jpg') 100% 100%;
+width:100%;
+color:#fff;
+}
+header {
+background: transparent url(../img/headerBg.png)repeat-x 0 0;
+height:60px;
+}
+header .listHeader, header .singleHeader {
+text-align:center;
+font-size:1.4em;
+}
+header .listHeader .title {
+display:inline-block;
+padding:1em 0;
+}
+header .listHeader .speakerCount {
+display:inline-block;
+background: transparent url(../img/titleCount.png) no-repeat center center;
+padding:1em;
+}
+header .singleHeader .title {
+padding:1em 0;
+}
+header .singleHeader .back {
+float:left;
+padding-top:5px;
+}
+.list ul {
+list-style:none;
+}
+.list ul li {
 
+}
+.list ul li a {
+color:#fff;
+text-decoration:none;
+width:45%;
+float:left;
+text-align:center;
+font-size:1.6em;
+background-color:rgba(0,0,0,0.2);
+margin:1em 2%;
+padding:1em 0;
+text-shadow:0 1px 0 #000000;
+font-weight:bold;
+}
+.list ul li img {
+padding:0.5em 0;
+}
+.list ul li .trackTitle {
 
-
-
-
-
-
-
+}
+.list ul li .trackAuthor {
+color:#808285;
+}
+.list ul li .time {
+font-size:2em;
+}
+.single .track {
+text-align:center;
+font-size:2em;
+text-shadow:0 1px 0 #000000;
+margin-top:5%;
+font-weight:bold;
+}
+.single .track .trackAuthor {
+color:#808285;
+font-size:0.8em;
+}
+.single .track .time {
+margin-top:2%;
+font-size:4em;
+}
 
 
 
