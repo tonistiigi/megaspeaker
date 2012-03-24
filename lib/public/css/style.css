@@ -203,50 +203,59 @@ td { vertical-align: top; }
    Author:
    ========================================================================== */
 
+
 html, body {
-  height: 100%;
+  height: 98%;
+}
+
+body {
+  background:#2e2e2e url('../img/masterBg.jpg') 100% 100%;
 }
 
 #container {
-  background:#2e2e2e url('../img/masterBg.jpg') 100% 100%;
-  width:100%;
+  width: 100%;
   height: 100%;
-  color:#fff;
-
+  color: #fff;
 }
 
 #container.speaker {
+  padding-top: 30px;
   text-align: center;
   margin: auto;
 }
 
+
 #time {
   font-size: 6em;
   font-weight: bold;
-  margin-bottom: 3%;
+  margin-bottom: 20px;
 }
 
 #speakerBg {
   position: relative;
-  width: 50%;
-  margin: 0 25% 0 25%;
-  height: 70%;
-  background: url('../img/speakerControlsBg.png') no-repeat;
+  margin: auto;
+  width: 400px;
+  height: 400px;
+  background: url('../img/speakerControlsBg.png') no-repeat 50% 0%;
   background-size: contain;
 }
 
 .counter {
   position: absolute;
-  font-size: 2em;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 #readySpeakers {
-  top: 20%;
-  right: 23%;
+  top: 16%;
+  right: 22%;
 }
 
 #totalSpeakers {
-
+  top: 22%;
+  right: 18%;
+  font-size: 18px;
+  color: lightgray;
 }
 
 header {
