@@ -24,8 +24,6 @@
   <!-- For nokia devices: -->
   <link rel="shortcut icon" href="/img/l/apple-touch-icon.png">
   
-	<link rel="stylesheet" href="/jukebox/demo/media/layout.css">
-  
   <!-- iOS web app, delete if not needed. https://github.com/h5bp/mobile-boilerplate/issues/94 -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -50,46 +48,42 @@
 
 	<div id="container">
 	  <header>
-			<div class="listHeader">
+      <!-- List header start -->
+			<div class="listHeader" style="display:none;">
 				<div class="title">Mega Playlist</div>
 				<div class="speakerCount">60</div>
 			</div>
-			<div class="singleHeader" style="display:none;">
+      <!-- Single header start -->
+			<div class="singleHeader">
 				<a href="#" class="back">
-					<img src="img/back.png"/>
+					<img src="/img/back.png"/>
 				</a>
 				<div class="title">Master</div>
 			</div>
 			<div class="clearfix"></div>
 		</header>
-		<div class="list">
+    <!-- List start -->
+		<div class="list" style="display:none;">
 			<ul>
 			</ul>
 			<div class="clearfix"></div>
 		</div>
-		<div class="single" style="display:none;">
+    <!-- Single start -->
+		<div class="single">
 			<div class="track">
 				<div class="trackTitle">Justin Biber – Somebody to love</div>
 				<div class="trackAuthor">Justin Biber</div>
 				<div class="time">0:25</div>
 			</div>
-			<div class="controls playing">
-				<div class="count">
-					<span class="ready">25</span>
-					<span class="total">66</span>
-				</div>
-				<div class="play">
-					<a href="#">
-						<img src="img/play.png" alt="Play"/>
-						<img src="img/singleSpeaker.png" alt="Speaker" style="display:none;"/>
-					</a>
-				</div>
-				<div class="stop">
-					<img src="img/stop.png" alt="Stop"/>
-				</div>
-				<div class="pause">
-					<img src="img/pause.png" alt="Pause"/>
-				</div>
+			<div class="controls">
+        <div class="count">
+          <div class="wait">20</div>
+          <div class="total">30</div>
+        </div>
+        <div class="ready"></div>
+        <div class="play" style="display: none;"></div>
+        <div class="stop"></div>
+        <div class="pause"></div>
 			</div>
 		</div>
 		<footer>
@@ -126,6 +120,5 @@
     g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
     s.parentNode.insertBefore(g,s)}(document,"script"));
   </script>
-  <h1 id="timetest"></h1>
 </body>
 </html>

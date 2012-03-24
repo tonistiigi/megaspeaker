@@ -272,78 +272,155 @@ body {
 }
 
 header {
-background: transparent url(../img/headerBg.png)repeat-x 0 0;
-height:60px;
+  background: transparent url(../img/headerBg.png)repeat-x 0 0;
+  height: 60px;
 }
 header .listHeader, header .singleHeader {
-text-align:center;
-font-size:1.4em;
+  text-align:center;
+  font-size:1.4em;
 }
 header .listHeader .title {
-display:inline-block;
-padding:1em 0;
+  display:inline-block;
+  padding:1em 0;
 }
 header .listHeader .speakerCount {
-display:inline-block;
-background: transparent url(../img/titleCount.png) no-repeat center center;
-padding:1em;
+  display:inline-block;
+  background: transparent url(../img/titleCount.png) no-repeat center center;
+  padding:1em;
 }
 header .singleHeader .title {
-padding:1em 0;
+  padding:1em 0;
 }
 header .singleHeader .back {
-float:left;
-padding-top:5px;
+  float:left;
+  padding-top:5px;
 }
 .list ul {
-list-style:none;
+  list-style:none;
 }
 .list ul li {
 
 }
 .list ul li a {
-color:#fff;
-text-decoration:none;
-width:45%;
-float:left;
-text-align:center;
-font-size:1.6em;
-background-color:rgba(0,0,0,0.2);
-margin:1em 2%;
-padding:1em 0;
-text-shadow:0 1px 0 #000000;
-font-weight:bold;
+  color:#fff;
+  text-decoration:none;
+  width:45%;
+  float:left;
+  text-align:center;
+  font-size:1.6em;
+  background-color:rgba(0,0,0,0.2);
+  margin:1em 2%;
+  padding:1em 0;
+  text-shadow:0 1px 0 #000000;
+  font-weight:bold;
 }
 .list ul li img {
-padding:0.5em 0;
+  padding:0.5em 0;
 }
 .list ul li .trackTitle {
 
 }
 .list ul li .trackAuthor {
-color:#808285;
+  color:#808285;
 }
 .list ul li .time {
-font-size:2em;
+  font-size:2em;
 }
+/** SINGLE **/
+.single {
+  height: 90%;
+  text-align: center;
+}
+
 .single .track {
-text-align:center;
-font-size:2em;
-text-shadow:0 1px 0 #000000;
-margin-top:5%;
-font-weight:bold;
+  text-align:center;
+  font-size: 1.2em;
+  text-shadow: 0 1px 0 #000000;
+  margin-top: 0.2em;
+  font-weight: bold;
 }
+
 .single .track .trackAuthor {
-color:#808285;
-font-size:0.8em;
+  color: #808285;
+  font-size: 0.9em;
 }
+
 .single .track .time {
-margin-top:2%;
-font-size:4em;
+  margin-top: 0.2em;
+  font-size: 1.2em;
 }
 
+.single .controls {
+  margin: 0 auto;
+  position: relative;
+  width: 25em;
+  height: 25em;
+  background: url('/img/controlsBg.png') no-repeat;
+  background-size: contain;
+}
 
+.single .controls .play, .single .controls .ready {  
+  background-size: contain;
+  width: 12em;
+  height: 12em;
+  position: absolute;
+  top: 3em;
+  left: 7em;
+}
 
+.single .controls .play {
+  background: url('/img/play.png') no-repeat;
+}
+
+.single .controls .ready {
+  background: url('/img/singleSpeaker.png') no-repeat;
+}
+
+.single .controls .stop {
+  background-size: contain;
+  position: absolute;
+  background: url('/img/stop.png') no-repeat;
+  width: 7.5em;
+  height: 7.5em;
+  bottom: 3em;
+  left: 5em;
+}
+
+.single .controls .pause {
+  background-size: contain;
+  position: absolute;
+  background: url('/img/pause.png') no-repeat;
+  width: 6em;
+  height: 6em;
+  top: 10em;
+  left: 1.5em;
+}
+
+.single .controls .count {
+  background-size: contain;
+  position: absolute;
+  background: url('/img/countBg.png') no-repeat;
+  width: 5em;
+  height: 5em;
+  top: 2.5em;
+  right: 2em;
+}
+
+.single .controls .count .wait {
+  color: #ffffff;
+  position: absolute;
+  top: 1.2em;
+  right: 2.5em;
+  font-weight: bold;
+}
+
+.single .controls .count .total {
+  color:#808285;
+  position: absolute;
+  top: 2.7em;
+  right: 1.6em;
+  font-weight: bold;
+}
 
 
 
