@@ -202,52 +202,72 @@ td { vertical-align: top; }
 /* ==|== primary styles =====================================================
    Author:
    ========================================================================== */
+a {
+  text-decoration: none;
+}
+
 html, body {
-  height: 100%;
+  height: 98%;
+}
+
+body {
   background:#2e2e2e url('../img/masterBg.jpg') 100% 100%;
 }
 
 #container {
-  width:100%;
+  width: 100%;
   height: 100%;
-  color:#fff;
-
+  color: #fff;
 }
 
 #container.speaker {
+  padding-top: 30px;
   text-align: center;
   margin: auto;
 }
 
+
 #time {
-  font-size: 6em;
+  font-size: 4em;
   font-weight: bold;
-  margin-bottom: 3%;
+  margin-bottom: 20px;
 }
 
 #speakerBg {
   position: relative;
-  width: 50%;
-  margin: 0 25% 0 25%;
-  height: 70%;
-  background: url('/img/speakerControlsBg.png') no-repeat;
+  margin: auto;
+  width: 330px;
+  height: 400px;
+  background: url('../img/speakerControlsBg.png') no-repeat 50% 0%;
   background-size: contain;
 }
 
 .counter {
   position: absolute;
-  font-size: 2em;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 #readySpeakers {
-  top: 20%;
-  right: 23%;
-  color:#fff;
-  height: 100%;
+  top: 13%;
+  right: 20%;
 }
 
 #totalSpeakers {
+  top: 18%;
+  right: 17%;
+  font-size: 18px;
+  color: lightgray;
+}
 
+#playBtn {
+  position: relative;
+  top: 45px;
+  left: -23px;
+}
+
+#playBtn img {
+  width: 175px;
 }
 
 header {
