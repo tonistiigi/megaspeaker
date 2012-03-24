@@ -271,7 +271,7 @@ body {
 }
 
 header {
-  background: transparent url(../img/headerBg.png)repeat-x 0 0;
+  background: transparent url(/img/headerBg.png)repeat-x 0 0;
   height: 60px;
 }
 header .listHeader, header .singleHeader {
