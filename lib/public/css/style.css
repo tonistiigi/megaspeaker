@@ -203,11 +203,52 @@ td { vertical-align: top; }
    Author:
    ========================================================================== */
 
-#container {
-background:#2e2e2e url('../img/masterBg.jpg') 100% 100%;
-width:100%;
-color:#fff;
+html, body {
+  height: 100%;
 }
+
+#container {
+  background:#2e2e2e url('../img/masterBg.jpg') 100% 100%;
+  width:100%;
+  height: 100%;
+  color:#fff;
+
+}
+
+#container.speaker {
+  text-align: center;
+  margin: auto;
+}
+
+#time {
+  font-size: 6em;
+  font-weight: bold;
+  margin-bottom: 3%;
+}
+
+#speakerBg {
+  position: relative;
+  width: 50%;
+  margin: 0 25% 0 25%;
+  height: 70%;
+  background: url('../img/speakerControlsBg.png') no-repeat;
+  background-size: contain;
+}
+
+.counter {
+  position: absolute;
+  font-size: 2em;
+}
+
+#readySpeakers {
+  top: 20%;
+  right: 23%;
+}
+
+#totalSpeakers {
+
+}
+
 header {
 background: transparent url(../img/headerBg.png)repeat-x 0 0;
 height:60px;
