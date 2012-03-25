@@ -231,11 +231,24 @@ font-weight:bold;
 text-shadow:0 1px 0 #000000;
 }
 .mainWrap {
-background:transparent url(../img/blackStripeBg.png) repeat-x 0 340px;
+background:transparent url(../img/blackStripeBg.png) repeat-x 0 530px;
 }
 .main {
 width:980px;
 margin:0 auto;
+}
+.main .cta {
+text-align:center;
+margin-bottom:20px;
+}
+.main .cta .title {
+font-size:84px;
+font-weight:bold;
+display:block;
+}
+.main .cta .subtitle {
+display:block;
+font-size:45px;
 }
 .slider {
 overflow: hidden;
@@ -405,8 +418,17 @@ footer .links a {
 color:#000;
 text-decoration:none;
 }
+footer .logos {
+width:400px;
+margin:20px auto;
+text-align:center;
+}
+footer .logos a {
+display:inline-block;
+margin-right:25px;
+}
 footer .facepile {
-width:500px;
+width:300px;
 margin:20px auto;
 }
 
