@@ -269,7 +269,16 @@ body {
   background-size: contain;
 }
 
-
+#speaker-on {
+  position: absolute;
+  top: 8.4em;
+  left: 9.4em;
+  width: 3.4em;
+  height: 3.4em;
+  background: #25E610;
+  -webkit-border-radius: 3.4em;
+  display: none;
+}
 
 .counter {
   position: absolute;
@@ -295,7 +304,7 @@ body {
 }
 
 #playBtn img {
-  width: 175px;
+  width: 172px;
 }
 
 header {
