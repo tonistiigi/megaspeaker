@@ -269,14 +269,23 @@ body {
   background-size: contain;
 }
 
+#loading {
+  position: relative;
+  z-index: 1300;
+  top: 10.7em;
+  left: -1.7em;
+  font-weight: bold;
+}
+
 #speaker-on {
   position: absolute;
   top: 8.4em;
   left: 9.4em;
   width: 3.4em;
   height: 3.4em;
-  background: #25E610;
+  background: #8dc63f;
   -webkit-border-radius: 3.4em;
+  -webkit-box-shadow: 0 0 5px 5px #888;
   display: none;
 }
 
