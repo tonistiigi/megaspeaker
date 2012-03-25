@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title></title>
+  <title>MEGASPKR - Speaker</title>
   <meta name="description" content="">
 
   <!-- Mobile viewport optimization h5bp.com/ad -->
@@ -27,7 +27,7 @@
 
   <!-- iOS web app, delete if not needed. https://github.com/h5bp/mobile-boilerplate/issues/94 -->
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app- status-bar-style" content="black-translucent" />
   <script>(function(){var a;if(navigator.platform==="iPad"){a=window.orientation!==90||window.orientation===-90?"img/startup-tablet-landscape.png":"img/startup-tablet-portrait.png"}else{a=window.devicePixelRatio===2?"img/startup-retina.png":"img/startup.png"}document.write('<link rel="apple-touch-startup-image" href="'+a+'"/>')})()</script>
 
   <!-- The script prevents links from opening in mobile safari. https://gist.github.com/1042026 -->
@@ -47,14 +47,17 @@
 
 <body>
   <div id="container" class="speaker">
-    <h1>Justin Bieber - Somebody to Love</h1>
-    <div id="time">00:45</div>
+    <div class="wrapper">
+      <h1 id="title"></h1>
+      <div id="time"></div>
+    </div>
     <div id="speakerBg">
+      <div id="speaker-animation"></div>
       <a href="#" id="playBtn">
         <img src="/img/play.png" alt="Play" title="Play" />
       </a>
-      <span id="readySpeakers" class="counter" title="Ready speakers">60</span>
-      <span id="totalSpeakers" class="counter" title="Total speakers">70</span>
+      <span id="readySpeakers" class="counter" title="Ready speakers">0</span>
+      <span id="totalSpeakers" class="counter" title="Total speakers">0</span>
     </div>
   </div>
 
@@ -63,6 +66,15 @@
   <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+
+    <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
+       mathiasbynens.be/notes/async-analytics-snippet -->
+  <script>
+    var _gaq=[["_setAccount","UA-30296468-1"],["_trackPageview"]];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+    g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
+    s.parentNode.insertBefore(g,s)}(document,"script"));
+  </script>
 
   <!-- scripts concatenated and minified via ant build script-->
   <script src="/js/helper.js"></script>

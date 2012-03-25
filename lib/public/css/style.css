@@ -211,7 +211,7 @@ html, body {
 }
 
 body {
-  background:#2e2e2e url('../img/masterBg.jpg') 100% 100%;
+  background:#2e2e2e url('/img/masterBg.jpg') 100% 100%;
 }
 
 #container {
@@ -221,11 +221,38 @@ body {
 }
 
 #container.speaker {
-  padding-top: 30px;
+  padding-top: 25px;
   text-align: center;
   margin: auto;
 }
 
+#speaker-animation {
+  background: url(/img/speaker.png) no-repeat;
+  background-size: contain;
+  position: absolute;
+  z-index: 1200;
+  display: none;
+  -webkit-animation: speakerAnimation 0.6s infinite;
+}
+
+@-webkit-keyframes speakerAnimation {
+  from {
+    width: 14em;
+    height: 14em;
+    left: 4em;
+    top: 3em;
+  }
+  to {
+    width: 11em;
+    height: 11em;
+    left: 5.5em;
+    top: 4.5em;
+  }
+}
+
+#container.speaker .wrapper {
+  height: 8em;
+}
 
 #time {
   font-size: 4em;
@@ -242,21 +269,22 @@ body {
   background-size: contain;
 }
 
+
+
 .counter {
   position: absolute;
-  font-size: 20px;
+  font-size: 17px;
   font-weight: bold;
 }
 
 #readySpeakers {
   top: 13%;
-  right: 20%;
+  right: 21%;
 }
 
 #totalSpeakers {
   top: 18%;
-  right: 17%;
-  font-size: 18px;
+  right: 18%;
   color: lightgray;
 }
 
