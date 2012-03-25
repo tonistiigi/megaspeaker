@@ -306,7 +306,7 @@ margin-left:30px;
 float:left;
 }
 .slider .overview .text{
-font-size:32px;
+font-size:30px;
 font-family: 'Waiting for the Sunrise', cursive;
 }
 .slider .overview .slide1 .right {
@@ -336,11 +336,10 @@ background:transparent url(../img/createBtn.png) no-repeat 0 0;
 float:left;
 }
 .slider .slide2 .right {
-float:right;
+float:left;
 margin-top:50px;
 }
 .slider .slide2 .text {
-margin-left:40px;
 margin-top:80px;
 }
 .slider .slide2 .beBtn a {
@@ -356,8 +355,8 @@ width:103px;
 height:102px;
 display:block;
 background:transparent url(../img/bespkrBtn.png) no-repeat 0 0;
-margin-left:320px;
-margin-top:-30px;
+margin-left:170px;
+margin-top:-40px;
 }
 .slider .slide2 .pic {
 margin-top:70px;
@@ -387,6 +386,20 @@ width:289px;
 height:431px;
 overflow:scroll;
 border:0 none transparent;
+}
+footer {
+background:transparent url(../img/dot.png) repeat-x 0 7px;
+margin-top:40px;
+}
+footer .links {
+width:500px;
+margin:0 auto;
+text-align:center;
+background-color:#fff;
+}
+footer .links a {
+color:#000;
+text-decoration:none;
 }
 
 
