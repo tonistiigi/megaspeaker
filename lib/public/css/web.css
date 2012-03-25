@@ -313,7 +313,7 @@ font-family: 'Waiting for the Sunrise', cursive;
 float:left;
 }
 .slider .overview .slide1 .text{
-margin:120px 0 0 40px;
+margin:120px 0 0 35px;
 }
 .slider .slide1 .createBtn {
 font-size:24px;
@@ -340,7 +340,7 @@ float:right;
 margin-top:50px;
 }
 .slider .slide2 .text {
-margin-left:45px;
+margin-left:40px;
 margin-top:80px;
 }
 .slider .slide2 .beBtn a {
