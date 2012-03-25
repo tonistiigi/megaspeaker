@@ -231,7 +231,7 @@ font-weight:bold;
 text-shadow:0 1px 0 #000000;
 }
 .mainWrap {
-background:transparent url(../img/blackStripeBg.png) repeat-x 0 530px;
+background:transparent url(../img/blackStripeBg.png) repeat-x 0 542px;
 }
 .main {
 width:980px;
@@ -245,6 +245,10 @@ margin-bottom:20px;
 font-size:84px;
 font-weight:bold;
 display:block;
+}
+.main .cta .title a {
+color:#000;
+text-decoration:none;
 }
 .main .cta .subtitle {
 display:block;
