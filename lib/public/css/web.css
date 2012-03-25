@@ -1,5 +1,5 @@
 /*
- * HTML5 ✰ Boilerplate
+ * HTML5 Boilerplate
  *
  * What follows is the result of much research on cross-browser styling.
  * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
@@ -27,15 +27,23 @@ audio:not([controls]) { display: none; }
 
 /*
  * 1. Correct text resizing oddly in IE6/7 when body font-size is set using em units
- * 3. Prevent iOS text size adjust on device orientation change, without disabling user zoom: h5bp.com/g
+ * 2. Prevent iOS text size adjust on device orientation change, without disabling user zoom: h5bp.com/g
  */
 
 html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
 
-body { margin: 0; font-size: 13px; line-height: 1.231; }
+html, button, input, select, textarea { font-family: sans-serif; color: #222; }
 
-body, button, input, select, textarea { font-family: sans-serif; color: #222; }
+body { margin: 0; font-size: 1em; line-height: 1.4; }
 
+/*
+ * Remove text-shadow in selection highlight: h5bp.com/i
+ * These selection declarations have to be separate
+ * Also: hot pink! (or customize the background color to match your design)
+ */
+
+::-moz-selection { background: #fe57a1; color: #fff; text-shadow: none; }
+::selection { background: #fe57a1; color: #fff; text-shadow: none; }
 
 
 /* =============================================================================
@@ -101,7 +109,7 @@ nav ul, nav ol { list-style: none; list-style-image: none; margin: 0; padding: 0
 
 /*
  * 1. Improve image quality when scaled in IE7: h5bp.com/d
- * 2. Remove the gap between images and borders on image containers: h5bp.com/e
+ * 2. Remove the gap between images and borders on image containers: h5bp.com/i/440
  */
 
 img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
@@ -135,7 +143,7 @@ label { cursor: pointer; }
  * 2. Correct alignment displayed oddly in IE6/7
  */
 
-legend { border: 0; *margin-left: -7px; padding: 0; }
+legend { border: 0; *margin-left: -7px; padding: 0; white-space: normal; }
 
 /*
  * 1. Correct font-size not inheriting in all browsers
@@ -147,37 +155,37 @@ button, input, select, textarea { font-size: 100%; margin: 0; vertical-align: ba
 
 /*
  * 1. Define line-height as normal to match FF3/4 (set using !important in the UA stylesheet)
- * 2. Correct inner spacing displayed oddly in IE6/7
  */
 
-button, input { line-height: normal; *overflow: visible; }
-
-/*
- * Reintroduce inner spacing in 'table' to avoid overlap and whitespace issues in IE6/7
- */
-
-table button, table input { *overflow: auto; }
+button, input { line-height: normal; }
 
 /*
  * 1. Display hand cursor for clickable form elements
  * 2. Allow styling of clickable form elements in iOS
+ * 3. Correct inner spacing displayed oddly in IE7 (doesn't effect IE6)
  */
 
-button, input[type="button"], input[type="reset"], input[type="submit"], [role="button"] { cursor: pointer; -webkit-appearance: button; }
+button, input[type="button"], input[type="reset"], input[type="submit"] { cursor: pointer; -webkit-appearance: button; *overflow: visible; }
+
+/*
+ * Re-set default cursor for disabled elements
+ */
+
+button[disabled], input[disabled] { cursor: default; }
 
 /*
  * Consistent box sizing and appearance
  */
 
-input[type="checkbox"], input[type="radio"] { box-sizing: border-box; padding: 0; }
+input[type="checkbox"], input[type="radio"] { box-sizing: border-box; padding: 0; *width: 13px; *height: 13px; }
 input[type="search"] { -webkit-appearance: textfield; -moz-box-sizing: content-box; -webkit-box-sizing: content-box; box-sizing: content-box; }
-input[type="search"]::-webkit-search-decoration { -webkit-appearance: none; }
+input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; }
 
 /*
  * Remove inner padding and border in FF3/4: h5bp.com/l
  */
 
-button::-moz-focus-inner { border: 0; padding: 0; }
+button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
 
 /*
  * 1. Remove default vertical scrollbar in IE6/7/8/9
@@ -199,279 +207,197 @@ table { border-collapse: collapse; border-spacing: 0; }
 td { vertical-align: top; }
 
 
-/* ==|== primary styles =====================================================
-   Author:
+/* =============================================================================
+   Chrome Frame Prompt
    ========================================================================== */
-a {
-  text-decoration: none;
-}
 
-html, body {
-  height: 98%;
-}
-
-body {
-  background:#2e2e2e url('/img/masterBg.jpg') 100% 100%;
-}
-
-#container {
-  width: 100%;
-  height: 100%;
-  color: #fff;
-}
-
-#container.speaker {
-  padding-top: 25px;
-  text-align: center;
-  margin: auto;
-}
-
-#speaker-animation {
-  background: url(/img/speaker.png) no-repeat;
-  background-size: contain;
-  position: absolute;
-  z-index: 1200;
-  display: none;
-  -webkit-animation: speakerAnimation 0.6s infinite;
-}
-
-@-webkit-keyframes speakerAnimation {
-  from {
-    width: 14em;
-    height: 14em;
-    left: 4em;
-    top: 3em;
-  }
-  to {
-    width: 11em;
-    height: 11em;
-    left: 5.5em;
-    top: 4.5em;
-  }
-}
-
-#container.speaker .wrapper {
-  height: 8em;
-}
-
-#time {
-  font-size: 4em;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-#speakerBg {
-  position: relative;
-  margin: auto;
-  width: 330px;
-  height: 400px;
-  background: url('../img/speakerControlsBg.png') no-repeat 50% 0%;
-  background-size: contain;
-}
+.chromeframe { margin: 0.2em 0; background: #ccc; color: black; padding: 0.2em 0; }
 
 
-
-.counter {
-  position: absolute;
-  font-size: 17px;
-  font-weight: bold;
-}
-
-#readySpeakers {
-  top: 13%;
-  right: 21%;
-}
-
-#totalSpeakers {
-  top: 18%;
-  right: 18%;
-  color: lightgray;
-}
-
-#playBtn {
-  position: relative;
-  top: 45px;
-  left: -23px;
-}
-
-#playBtn img {
-  width: 175px;
-}
+/* ==|== primary styles =====================================================
+   Author: Mingi mees
+   ========================================================================== */
 
 header {
-  background: transparent url(/img/headerBg.png)repeat-x 0 0;
-  height: 60px;
+height:32px;
+background: transparent url(../img/tobBg.png) repeat-x 0 0;
+color:#fff;
+text-align:center;
 }
-header .listHeader, header .singleHeader {
-  text-align:center;
-  font-size:1.4em;
+header .title {
+line-height:28px;
+font-size:14px;
+font-weight:bold;
+text-shadow:0 1px 0 #000000;
 }
-header .listHeader .title {
-  display:inline-block;
-  padding:1em 0;
+.mainWrap {
+background:transparent url(../img/blackStripeBg.png) repeat-x 0 340px;
 }
-header .listHeader .speakerCount {
-  display:inline-block;
-  background: transparent url(../img/titleCount.png) no-repeat center center;
-  padding:1em;
+.main {
+width:980px;
+margin:0 auto;
 }
-header .singleHeader .title {
-  padding:1em 0;
+.slider {
+overflow: hidden;
+width: 980px;
 }
-header .singleHeader .back {
-  float:left;
-  padding-top:5px;
+.slider .pager {
+list-style: none outside none;
+overflow: hidden;
+margin-top:250px;
+padding:0;
+width:280px;
+float:left;
+background-color:#fff;
+padding:0 10px;
 }
-.list ul {
-  list-style:none;
+.slider .pager li {
+float: left;
+margin-right:9px;
 }
-.list ul li {
+.slider .pager a {
+font-weight:bold;
+margin-top:84px;
+color: #fff;
+display: block;
+text-align: center;
+text-decoration: none;
+font-size: 24px;
+text-align:center;
+line-height:30px;
+height:30px;
+width:30px;
+background:transparent url(../img/numSmall.png) no-repeat;
+}
+.slider .pager .active {
+margin:0;
+color: #fff;
+font-size:160px;
+line-height:191px;
+text-align:center;
+height:191px;
+width:191px;
+background:transparent url(../img/numBig.png) no-repeat;
+}
+.slider .viewport {
+float: left;
+height: 566px;
+overflow: hidden;
+position: relative;
+width: 680px;
+}
+.slider .overview {
+list-style: none outside none;
+position: absolute;
+width: 680px;
+padding:0;
+margin:0;
+}
+.slider .overview li {
+float: left;
+height: 560px;
+margin: 0 20px 0 0;
+position: relative;
+width: 660px;
+padding:0;
+}
+.slider .overview .slide1 img {
+margin-left:30px;
+float:left;
+}
+.slider .overview .text{
+font-size:32px;
+font-family: 'Waiting for the Sunrise', cursive;
+}
+.slider .overview .slide1 .right {
+float:left;
+}
+.slider .overview .slide1 .text{
+margin:120px 0 0 35px;
+}
+.slider .slide1 .createBtn {
+font-size:24px;
+text-align:center;
+line-height:24px;
+font-weight:bold;
+margin:100px 0 0 90px;
+}
+.slider .slide1 .createBtn a {
+color:#fff;
+text-decoration:none;
+text-shadow:0 -1px 0 #000000;
+width:136px;
+height:136px;
+display:block;
+padding-top:40px;
+background:transparent url(../img/createBtn.png) no-repeat 0 0;
+}
+.slider .slide2 .left {
+float:left;
+}
+.slider .slide2 .right {
+float:right;
+margin-top:50px;
+}
+.slider .slide2 .text {
+margin-left:40px;
+margin-top:80px;
+}
+.slider .slide2 .beBtn a {
+font-size:24px;
+text-align:center;
+line-height:24px;
+font-weight:bold;
+color:#fff;
+text-decoration:none;
+text-shadow:0 -1px 0 #000000;
+padding-top:24px;
+width:103px;
+height:102px;
+display:block;
+background:transparent url(../img/bespkrBtn.png) no-repeat 0 0;
+margin-left:320px;
+margin-top:-30px;
+}
+.slider .slide2 .pic {
+margin-top:70px;
+margin-left:40px;
+}
+.slider .slide3 {
+background-color:#fff;
+}
+.slider .slide3 .text {
+margin-top:235px;
+margin-left:20px;
+background:transparent url(../img/arrow.jpg) no-repeat bottom right;
+padding-bottom:54px;
+width:290px;
+float:left;
+}
+.slider .slide3 .iphone {
+float:left;
+padding:23px 21px 112px 25px;
+margin-left:15px;
+width:287px;
+height:431px;
+background:transparent url(../img/iphone2.png) no-repeat 0 0;
+}
+.slider .slide3 .iphone iframe {
+width:289px;
+height:431px;
+overflow:scroll;
+border:0 none transparent;
+}
 
-}
-.list ul li a {
-  color:#fff;
-  text-decoration:none;
-  width:45%;
-  float:left;
-  text-align:center;
-  font-size:1.6em;
-  background-color:rgba(0,0,0,0.2);
-  margin:1em 2%;
-  padding:1em 0;
-  text-shadow:0 1px 0 #000000;
-  font-weight:bold;
-}
-.list ul li img {
-  padding:0.5em 0;
-}
-.list ul li .trackTitle {
 
-}
-.list ul li .trackAuthor {
-  color:#808285;
-}
-.list ul li .time {
-  font-size:2em;
-}
-/** SINGLE **/
-.single {
-  height: 90%;
-  text-align: center;
-}
+/* ==|== media queries ======================================================
+   EXAMPLE Media Query for Responsive Design.
+   This example overrides the primary ('mobile first') styles
+   Modify as content requires.
+   ========================================================================== */
 
-.single .track {
-  text-align:center;
-  font-size: 1.2em;
-  text-shadow: 0 1px 0 #000000;
-  margin-top: 0.2em;
-  font-weight: bold;
-}
-
-.single .track .trackAuthor {
-  color: #808285;
-  font-size: 0.9em;
-}
-
-.single .track .time {
-  margin-top: 0.2em;
-  font-size: 1.2em;
-}
-
-.single .controls {
-  margin: 0 auto;
-  position: relative;
-  width: 25em;
-  height: 25em;
-  background: url('/img/controlsBg.png') no-repeat;
-  background-size: contain;
-}
-
-.single .controls .play, .single .controls .ready {  
-  background-size: contain;
-  width: 12em;
-  height: 12em;
-  position: absolute;
-  top: 3em;
-  left: 7em;
-}
-
-.single .controls .play {
-  background: url('/img/play.png') no-repeat;
-}
-
-.single .controls .ready {
-  background: url('/img/singleSpeaker.png') no-repeat;
-}
-
-.single .controls .stop {
-  background-size: contain;
-  position: absolute;
-  background: url('/img/stop.png') no-repeat;
-  width: 7.5em;
-  height: 7.5em;
-  bottom: 3em;
-  left: 5em;
-}
-
-.single .controls .pause {
-  background-size: contain;
-  position: absolute;
-  background: url('/img/pause.png') no-repeat;
-  width: 6em;
-  height: 6em;
-  top: 10em;
-  left: 1.5em;
-}
-
-.single .controls .count {
-  background-size: contain;
-  position: absolute;
-  background: url('/img/countBg.png') no-repeat;
-  width: 5em;
-  height: 5em;
-  top: 2.5em;
-  right: 2em;
-}
-
-.single .controls .count .wait {
-  color: #ffffff;
-  position: absolute;
-  top: 1.2em;
-  right: 2.5em;
-  font-weight: bold;
-}
-
-.single .controls .count .total {
-  color:#808285;
-  position: absolute;
-  top: 2.7em;
-  right: 1.6em;
-  font-weight: bold;
-}
-
-
-
-
-/*
- * Media queries for responsive design github.com/h5bp/mobile-boilerplate/wiki/The-Style
- */
-
-
-/* Styles for desktop and large screen ----------- */
-
-/*styles for 800px and up!*/
-@media only screen and (min-width: 800px) {
-  /* Styles */
-}/*/mediaquery*/
-
-
-/* iPhone 4, Opera Mobile 11 and other high pixel ratio devices ----------- */
-@media
-only screen and (-webkit-min-device-pixel-ratio: 1.5),
-only screen and (-o-min-device-pixel-ratio: 3/2),
-only screen and (min--moz-device-pixel-ratio: 1.5),
-only screen and (min-device-pixel-ratio: 1.5) {
-  /* Styles */
+@media only screen and (min-width: 35em) {
+  /* Style adjustments for viewports that meet the condition */
 }
 
 
@@ -480,17 +406,8 @@ only screen and (min-device-pixel-ratio: 1.5) {
    Please define your styles before this section.
    ========================================================================== */
 
-/* prevent callout */
-.nocallout {-webkit-touch-callout: none;}
-
-/* A hack for HTML5 contenteditable attribute on mobile */
-textarea[contenteditable] {-webkit-appearance: none;}
-
-/* A workaround for S60 3.x and 5.0 devices which do not animated gif images if they have been set as display: none */
-.gifhidden {position: absolute; left: -100%;}
-
 /* For image replacement */
-.ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; }
+.ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; *line-height: 0; }
 .ir br { display: none; }
 
 /* Hide from both screenreaders and browsers: h5bp.com/u */
@@ -518,7 +435,7 @@ textarea[contenteditable] {-webkit-appearance: none;}
    ========================================================================== */
 
 @media print {
-  * { background: transparent !important; color: black !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; } /* Black prints faster: h5bp.com/s */
+  * { background: transparent !important; color: black !important; box-shadow:none !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; } /* Black prints faster: h5bp.com/s */
   a, a:visited { text-decoration: underline; }
   a[href]:after { content: " (" attr(href) ")"; }
   abbr[title]:after { content: " (" attr(title) ")"; }
