@@ -337,7 +337,6 @@ float:left;
 }
 .slider .slide2 .right {
 float:left;
-margin-top:50px;
 }
 .slider .slide2 .text {
 margin-top:80px;
@@ -359,8 +358,13 @@ margin-left:170px;
 margin-top:-40px;
 }
 .slider .slide2 .pic {
-margin-top:70px;
+margin-top:60px;
 margin-left:40px;
+}
+.slider .slide2 .uidurl {
+font-family:Arial, sans-serif;
+font-weight:bold;
+font-size:26px;
 }
 .slider .slide3 {
 background-color:#fff;
@@ -400,6 +404,10 @@ background-color:#fff;
 footer .links a {
 color:#000;
 text-decoration:none;
+}
+footer .facepile {
+width:500px;
+margin:20px auto;
 }
 
 
