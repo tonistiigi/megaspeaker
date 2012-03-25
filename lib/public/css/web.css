@@ -246,6 +246,10 @@ font-size:84px;
 font-weight:bold;
 display:block;
 }
+.main .cta .title a {
+color:#000;
+text-decoration:none;
+}
 .main .cta .subtitle {
 display:block;
 font-size:45px;
