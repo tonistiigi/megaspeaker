@@ -51,7 +51,9 @@
     <div id="netstate"></div>
     <div id="bufferstart"></div>
     <div id="bufferend"></div>
+    <div id="buffers"></div>
     <div id="duration"></div>
+    <div id="loaded"></div>
     <div class="clear"></div>
   </div>
   <div class="playhead">
@@ -66,8 +68,8 @@
     <div id="load2">LOAD2</div>
     <div id="play">PLAY</div>
     <div id="pause">PAUSE</div>
-    <div id="stop">STOP</div>
-    <div id="skip">NEXT</div>
+    <div id="replay">REPLAY</div>
+    <div id="set">SET</div>
     <div id="log1">LOG1</div>
     <div id="log2">LOG2</div>
     <div id="incr">INCR</div>
@@ -75,10 +77,14 @@
   </div>
   
   <style type="text/css">
+    body, html {
+      height: 100%;
+    }
     #log {
       width: 100%;
-      height: 300px;
-      overflow: scroll;
+      height: 50%;
+      overflow-y: scroll;
+      -webkit-overflow-scrolling: touch;
     }
     #log div {
       margin-bottom: 5px;
@@ -102,6 +108,9 @@
     }
     #netstate:before {
       content: "Netstate:";
+    }
+    #buffers:before {
+      content: "Buffers:";
     }
     #bufferstart:before {
       content: "Start:";
