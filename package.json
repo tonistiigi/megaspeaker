@@ -2,15 +2,14 @@
   "name": "megaspeaker",
   "description": "Mobile phones playing music in perfect sync",
   "author": "",
-  "version": "0.0.2",
+  "version": "0.0.2-1",
   "licenses": [
     {
       "type": "MIT",
       "url": ""
     }
   ],
-  "contributors": [
-  ],
+  "contributors": [],
   "repository": {
     "type": "git",
     "url": "https://github.com/tonistiigi/megaspeaker.git"
@@ -32,5 +31,9 @@
   },
   "engines": {
     "node": "0.6.x"
+  },
+  "subdomain": "spkr",
+  "scripts": {
+    "start": "lib/backend/server.js"
   }
 }
