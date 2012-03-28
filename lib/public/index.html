@@ -63,7 +63,134 @@
     </div>
     
   </div>
-
+  <div id="log"></div>
+  <div class="loading">
+    <div id="loadstate"></div>
+    <div id="netstate"></div>
+    <div id="bufferstart"></div>
+    <div id="bufferend"></div>
+    <div id="buffers"></div>
+    <div id="duration"></div>
+    <div id="loaded"></div>
+    <div class="clear"></div>
+  </div>
+  <div class="playhead">
+    <div id="url"></div>
+    <div id="time"></div>
+    <div id="tracklatency"></div>
+    <div id="latency"></div>
+    <div id="latency2"></div>
+    <div id="playtime"></div>
+    <div class="clear"></div>
+  </div>
+  <div class="tools">
+    <div id="load1">LOAD1</div>
+    <div id="load2">LOAD2</div>
+    <div id="play">PLAY</div>
+    <div id="pause">PAUSE</div>
+    <div id="replay">REPLAY</div>
+    <div id="set">SET</div>
+    <div id="log1">LOG1</div>
+    <div id="log2">LOG2</div>
+    <div id="incr">INCR</div>
+    <div id="decr">DECR</div>
+  </div>
+  <style type="text/css">
+    #log {
+      width: 100%;
+      height: 50%;
+      background: #fff;
+      overflow: scroll;
+      -webkit-overflow-scrolling: touch;
+    }
+    #log div {
+      margin-bottom: 2px;
+      border-bottom: 1px solid #333;
+      white-space: nowrap;
+    }
+    .loading {
+      background: #eee;
+      padding: 2px 0;
+    }
+    .loading div {
+      margin: 2px;
+      float: left;
+    }
+    .loading div:before {
+      color: #666;
+      padding-right: 3px;
+    }
+    #loadstate:before {
+      content: "Loadstate:";
+    }
+    #netstate:before {
+      content: "Netstate:";
+    }
+    #buffers:before {
+      content: "Buffers:";
+    }
+    #bufferstart:before {
+      content: "Start:";
+    }
+    #bufferend:before {
+      content: "End:";
+    }
+    #duration:before {
+      content: "Duration:";
+    }
+    
+    .playhead {
+      background: #fee;
+      padding: 2px 0;
+    }
+    .playhead div {
+      margin: 1px;
+      float: left;
+    }
+    .playhead div:before {
+      color: #666;
+      padding-right: 3px;
+    }
+    #url:before {
+      content: "URL:";
+    }
+    #time:before {
+      content: "Time:";
+    }
+    #tracklatency:before {
+      content: "TLatency:";
+    }
+    #latency:before {
+      content: "Latency:";
+    }
+    #latency2:before {
+      content: "Latency2:";
+    }
+    #playtime:before {
+      content: "Playtime:";
+    }
+    
+    .tools {
+      background: #eee;
+      padding: 5px 0;
+    }
+    .tools div {
+      border: 1px solid blue;
+      padding: 10px;
+      margin: 1px;
+      float: left;
+      font-weight: bold;
+      background: #fdb;
+      cursor: pointer;
+    }
+    
+    div.clear {
+      clear:both;
+      float: none;
+    }
+    
+    
+  </style>
   <!-- JavaScript at the bottom for fast page loading -->
 
   <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
@@ -85,8 +212,7 @@
   <script src="/socket.io/socket.io.js"></script>
   <script src="/js/libs/underscore.js"></script>
   <script src="/js/libs/backbone.js"></script>
-  <script src="/jukebox/src/Player.js"></script>
-	<script src="/jukebox/src/Manager.js"></script>
+  <script src="/js/spkr.js"></script>
   <script src="/js/app.js"></script>
   <script src="/js/app_client.js"></script>
 </body>
