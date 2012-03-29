@@ -256,6 +256,10 @@ body {
   -webkit-animation: speakerAnimation 0.6s infinite;
 }
 
+#title img {
+  width: 1.3em;
+}
+
 @-webkit-keyframes speakerAnimation {
   from {
     width: 14em;
