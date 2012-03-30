@@ -280,7 +280,7 @@ body {
 }
 
 #time {
-  font-size: 4em;
+  font-size: 2em;
   font-weight: bold;
   margin-bottom: 20px;
 }
@@ -553,8 +553,101 @@ textarea[contenteditable] {-webkit-appearance: none;}
 .clearfix:after { clear: both; }
 .clearfix { *zoom: 1; }
 
+.start_soundcloud {
+  width: 150px;
+  height: 96px;
+  background: rgba(255,255,255,.1) url(/img/soundcloud-icon.png) no-repeat;
+  border-radius: 7px;
+  margin: 20px auto;
+  box-shadow: 0 0 30px #000;
+  cursor: pointer;
+}
+.start_soundcloud:hover {
+  background-color: rgba(255,255,255,.15);
+}
 
-
+.soundcloud {
+  background: #222;
+  border-radius: 5px;
+  max-width: 700px;
+  margin: 30px auto;
+  top: 0px;
+  width: 90%;
+  min-height: 400px;
+  display: none;
+}
+.soundcloud .sc_tools {
+  padding: 15px;
+  
+}
+.soundcloud .sc_tools input {
+  height: 26px;
+  font-family: Helvetica;
+  padding: 5px 10px;
+  font-size: 20px;
+  border: 1px solid #000;
+  width: 500px;
+  margin: 0 auto;
+  float: left;
+}
+.soundcloud .sc_tools .btn {
+  float: left;
+  width: 100px;
+  background: rgba(200,200,200, .2);
+  padding: 7px 10px;
+  text-align: center;
+  font-size: 18px;
+  margin: 1px 0 0 15px;
+  cursor: pointer;
+}
+.soundcloud .sc_tools .btn:hover {
+  background: rgba(200,200,200, .25);
+}
+.soundcloud .results {
+  padding: 15px;
+  clear: both;
+}
+.soundcloud .results .track{
+  border: 1px solid #555;
+  padding: 10px;
+  margin: 10px 0;
+  clear: both;
+  height: 80px;
+  overflow: hidden;
+}
+.soundcloud .results .track .info{
+  float: left;
+  width: 400px;
+  padding: 10px 0px 0px 20px;
+}  
+.soundcloud .results .track .info .name{
+  color: #fff;
+  font-size: 20px;
+  padding-bottom: 5px;
+}  
+.soundcloud .results .track .info .description{
+  font-size: 13px;
+  color: #999;
+}
+.soundcloud .results .track .img{
+  width: 80px;
+  height: 80px;
+  float: left;
+}
+.soundcloud .results .track .btn{
+  float: left;
+  width: 50px;
+  padding: 10px 15px;
+  margin: 20px 0 0 40px;
+  background: rgba(200,200,200,.2);
+  color: #fff;
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+}
+.soundcloud .results .track .btn:hover {
+  background: rgba(200,200,200,.3);
+}
 /* ==|== print styles =======================================================
    Print styles.
    Inlined to avoid required HTTP connection: h5bp.com/r
