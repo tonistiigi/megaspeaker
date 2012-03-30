@@ -3,3 +3,4 @@ conf.json
 .DS_Store
 .git*
 nbproject
+cdn.json
